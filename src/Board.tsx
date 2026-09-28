@@ -52,9 +52,17 @@ export default function Board({
             ? "Your turn"
             : "Opponent’s turn"
         : "Ready when you are");
-  return (
-    <section className="board-panel panel">
-      <div className="player">
+  const playerAtBottom = state.color === (flipped ? "b" : "w");
+  const playerIdentity = <>
+        <span className="avatar">
+          <UserRound size={25} />
+        </span>
+        <div>
+          <strong>You</strong>
+          <span>{state.color === "w" ? "White" : "Black"} pieces</span>
+        </div>
+  </>;
+  const opponentIdentity = <>
         <span className="avatar bot">
           <img src={assetUrl("pieces/bN.svg")} alt="" />
         </span>
@@ -65,6 +73,11 @@ export default function Board({
             {levels[state.level].elo} Elo
           </span>
         </div>
+  </>;
+  return (
+    <section className="board-panel panel">
+      <div className="player">
+        {playerAtBottom ? opponentIdentity : playerIdentity}
         <span className="status">
           <i />
           {status}
@@ -112,13 +125,7 @@ export default function Board({
         </div>
       </div>
       <div className="player bottom">
-        <span className="avatar">
-          <UserRound size={25} />
-        </span>
-        <div>
-          <strong>You</strong>
-          <span>{state.color === "w" ? "White" : "Black"} pieces</span>
-        </div>
+        {playerAtBottom ? playerIdentity : opponentIdentity}
         <div className="board-tools">
           <button
             aria-label="Hint"
