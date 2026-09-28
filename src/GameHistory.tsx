@@ -25,8 +25,5 @@ export default function GameHistory({ state }: { state: GameState }) {
           )}
         </div>
       </details>
-      <small className="coach-source">
-        {__LOCAL_COACH__ ? "Move feedback uses local engine analysis. Written questions use the connected AI coach." : "Move feedback uses Stockfish analysis in your browser. No AI account or API key needed."}
-      </small>
   </section>;
 }
