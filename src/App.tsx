@@ -17,6 +17,7 @@ import { focuses, type FocusId } from "./focus";
 import Practice from "./Practice";
 import Board from "./Board";
 import CoachPanel from "./CoachPanel";
+import GameHistory from "./GameHistory";
 import Learn from "./Learn";
 import Progress from "./Progress";
 import { useGame, levels } from "./useGame";
@@ -93,7 +94,10 @@ export default function App() {
         {page === "Play" ? (
           <>
             <div className="play-layout">
-              <Board state={state} flipped={flipped} setFlipped={setFlipped} />
+              <div className="board-column">
+                <Board state={state} flipped={flipped} setFlipped={setFlipped} />
+                {showCoach && <GameHistory state={state} />}
+              </div>
               <section
                 className={`setup-panel panel ${showCoach ? "coaching" : "pre-game"}`}
               >

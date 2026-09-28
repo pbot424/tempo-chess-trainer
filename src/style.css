@@ -1740,8 +1740,8 @@ legend {
   font-size: 19px;
 }
 .coach-followups {
-  border-top: 1px solid var(--border);
-  padding: 17px 22px;
+  border-bottom: 1px solid var(--border);
+  padding: 12px;
 }
 .coach-followups > span {
   font-size: 10px;
@@ -1750,9 +1750,9 @@ legend {
   margin-bottom: 10px;
 }
 .coach-followups > div {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 7px;
-  flex-wrap: wrap;
 }
 .coach-followups button {
   font-size: 10px;
@@ -2048,3 +2048,9 @@ legend {
   .play-page { padding: 16px 12px; }
   .play-page .play-layout { grid-template-columns: minmax(0, 1fr); }
 }
+
+.board-column { min-width: 0; }
+.game-history { margin-top: 14px; }
+.game-history .coach-moves { border-top: 0; }
+.coach-followups button { justify-content: center; min-width: 0; line-height: 1.4; }
+.coach-followups button svg { flex-shrink: 0; }

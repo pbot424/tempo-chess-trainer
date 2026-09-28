@@ -1,11 +1,9 @@
 import { localCoachGuideUrl } from "./site";
 import { useCallback, useEffect, useRef } from "react";
 import {
-  Sprout,
   ArrowRight,
   MessageCircle,
   Lightbulb,
-  ChevronDown,
 } from "lucide-react";
 import { focusInfo } from "./focus";
 import CoachComposer from "./CoachComposer";
@@ -30,29 +28,10 @@ export default function CoachPanel({
   }, []);
   useEffect(scrollToLatest, [state.conversation.length, state.busy, state.coachBusy, state.result, scrollToLatest]);
   const streaming = state.streamingIds.length > 0;
-  const history = state.game.history();
   const hasExplanation = state.conversation.some((e) => e.detail);
   return (
     <div className="live-coach">
-      <div className="live-coach-header">
-        <span className="story-icon">
-          <Sprout size={24} />
-        </span>
-        <div>
-          <h2>Your coach</h2>
-          <p>
-            {state.result
-              ? "Let’s learn from this game."
-              : "Watching the board with you."}
-          </p>
-        </div>
-        <span
-          className="coach-presence"
-          aria-label={
-            state.result ? "Game complete" : "Coach is following the game"
-          }
-        />
-      </div>
+      <div className="live-coach-header"><h2>Your coach</h2></div>
       {state.focus && <div className="game-focus" aria-label="Current game focus">
         <span>THIS GAME'S FOCUS</span><strong>{focusInfo(state.focus).name}</strong>
         <small>{state.focusSummary?.reinforced ?? 0} supported / {state.focusSummary?.revisit ?? 0} to revisit</small>
@@ -123,7 +102,6 @@ export default function CoachPanel({
         )}
       </div>
       <div className={`coach-followups ${streaming ? "is-streaming" : "is-ready"}`}>
-        <span>Talk it through</span>
         <div>
           <button
             disabled={state.busy || state.coachBusy || streaming || !hasExplanation}
@@ -143,27 +121,6 @@ export default function CoachPanel({
         <p>Play and move feedback run in your browser. For open-ended AI conversations, run Tempo locally with Ollama.</p>
         <a href={localCoachGuideUrl} target="_blank" rel="noreferrer">Set up your local AI coach ↗</a>
       </div>}
-      <details className="coach-moves">
-        <summary>
-          Move history{" "}
-          <span>
-            <ChevronDown size={14} />
-          </span>
-        </summary>
-        <div className="move-list">
-          {history.length ? (
-            Array.from({ length: Math.ceil(history.length / 2) }, (_, i) => (
-              <div key={i}>
-                <span>{i + 1}.</span>
-                <strong>{history[i * 2]}</strong>
-                <strong>{history[i * 2 + 1] || "—"}</strong>
-              </div>
-            ))
-          ) : (
-            <p>Your first move is still ahead.</p>
-          )}
-        </div>
-      </details>
       {state.result && (
         <div className="coach-end-actions">
           <button className="primary" onClick={onInsights}>
@@ -175,9 +132,7 @@ export default function CoachPanel({
           </button>
         </div>
       )}
-      <small className="coach-source">
-        {__LOCAL_COACH__ ? "Move feedback uses local engine analysis. Written questions use the connected AI coach." : "Move feedback uses Stockfish analysis in your browser. No AI account or API key needed."}
-      </small>
+
     </div>
   );
 }
