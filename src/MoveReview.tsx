@@ -46,7 +46,7 @@ export default function MoveReview({ target, onClose, practice, onAttempt }: {
   } else if (attempt) fen = attempt.fen;
   return <dialog ref={dialog} className="move-review-dialog" aria-labelledby="move-review-title" onCancel={(e) => { e.preventDefault(); onClose(); }}>
     <header className="move-review-header">
-      <div><span className="section-label">EXPLORE YOUR GAME</span><h2 id="move-review-title">{practice?.title ?? "Show me why"}</h2></div>
+      <div><h2 id="move-review-title">{practice?.title ?? "Show me why"}</h2></div>
       <button autoFocus className="review-close" aria-label="Close exploration" onClick={onClose}><X size={20} /></button>
     </header>
     {position.game ? <div className="move-review-layout">
@@ -64,7 +64,6 @@ export default function MoveReview({ target, onClose, practice, onAttempt }: {
         <p>{showOriginal ? "Compare the position before and after your move. Which attacks, defenders, or lines changed? Go back and test another idea on the board." : attempt ? attempt.question : practice?.prompt ?? reviewQuestion(target)}</p>
         {!attempt && !showOriginal && <p className="muted">Choose a piece and try a legal move. I’ll help you examine it without giving you the answer.</p>}
         {error && <p role="alert" className="error">{error} Try your move again.</p>}
-        <small>Your game stays unchanged. Feedback is based on a short engine search; more than one idea may work.</small>
       </section>
     </div> : <p role="alert">{position.error}</p>}
     <footer><button className="primary" onClick={onClose}>{practice ? "Back to practice" : "Return to game"}</button></footer>
