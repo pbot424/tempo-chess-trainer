@@ -15,7 +15,6 @@ export default function Practice({ records, onPlay }: { records: GameRecord[]; o
   const visible = library.exercises.filter((item) => filter === "all" || item.theme === filter)
     .sort((a,b) => Number(practiceDue(progress[b.key], Date.now())) - Number(practiceDue(progress[a.key], Date.now())));
   return <div className="practice-page">
-    <header className="page-header"><div><h1>Practice your patterns.</h1><p>Short exercises from decisions worth revisiting in your own games.</p></div></header>
     {!library.exercises.length ? <section className="panel practice-empty">
       <h2>{library.candidateCount ? "A pattern needs another example." : "Your games become your practice."}</h2>
       <p>Once a theme appears in at least two analyzed learning moments, its positions will appear here. Play and save a game to build your personal practice set.</p>
