@@ -34,7 +34,6 @@ export default function CoachPanel({
       <div className="live-coach-header"><h2>Your coach</h2></div>
       {state.focus && <div className="game-focus" aria-label="Current game focus">
         <span>THIS GAME'S FOCUS</span><strong>{focusInfo(state.focus).name}</strong>
-        <small>{state.focusSummary?.reinforced ?? 0} supported / {state.focusSummary?.revisit ?? 0} to revisit</small>
       </div>}
       <div
         ref={feed}
