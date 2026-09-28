@@ -2027,3 +2027,30 @@ legend {
 .project-footer a, .local-coach-note a { color: var(--pine); text-underline-offset: 3px; }
 .local-coach-note { margin: 14px 20px; padding: 16px; background: #f1f3eb; border-radius: 8px; font-size: 12px; line-height: 1.6; }
 .local-coach-note p { margin: 8px 0; }
+
+/* Keep the board dominant and the primary setup controls within easy reach. */
+.play-page { padding: 24px; }
+.play-page .play-layout { grid-template-columns: minmax(0, 1fr) 320px; gap: 20px; }
+.play-page .board-panel { padding: 14px 12px 12px; }
+.play-page .setup-panel.pre-game { padding: 0 18px 20px; }
+.play-page .pre-game .setup-content { padding-top: 18px; }
+.play-page .setup-content h2 { font-size: 30px; }
+.play-page .suggested-level { font-size: 12px; line-height: 1.5; margin-top: 6px; color: #65726b; }
+.play-page .adaptive-settings { margin-top: 12px; padding: 0 0 14px; }
+.play-page fieldset { margin-top: 18px; }
+.play-page .levels button { padding: 12px 3px; }
+.play-page .start { margin-top: 18px; }
+.play-page .focus-choice { border-top: 1px solid var(--border); padding-top: 14px; }
+@media (min-width: 1500px) {
+  .play-page .play-layout { grid-template-columns: minmax(0, 1fr) 380px; }
+}
+@media (min-width: 721px) and (max-width: 1100px) {
+  .play-page { padding: 18px 12px; }
+  .play-page .play-layout { grid-template-columns: minmax(0, 1fr) 260px; gap: 12px; }
+  .play-page .setup-panel.pre-game { padding-inline: 12px; }
+  .play-page .setup-content h2 { font-size: 27px; }
+}
+@media (max-width: 720px) {
+  .play-page { padding: 16px 12px; }
+  .play-page .play-layout { grid-template-columns: minmax(0, 1fr); }
+}

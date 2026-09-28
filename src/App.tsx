@@ -6,7 +6,6 @@ import {
   Target,
   ChartNoAxesColumnIncreasing,
   ArrowRight,
-  ShieldCheck,
   ChevronRight,
 } from "lucide-react";
 import Placement from "./Placement";
@@ -90,14 +89,9 @@ export default function App() {
           ))}
         </nav>
       </aside>
-      <main>
+      <main className={page === "Play" ? "play-page" : undefined}>
         {page === "Play" ? (
           <>
-            <header className="page-header">
-              <div>
-                <h1>Your next move starts here.</h1>
-              </div>
-            </header>
             <div className="play-layout">
               <Board state={state} flipped={flipped} setFlipped={setFlipped} />
               <section
@@ -106,14 +100,9 @@ export default function App() {
                 {!showCoach ? (
                   <div className="setup-content">
                     <h2>Find your challenge</h2>
-                    <p className="muted">
-                      A good opponent meets you where you are.
-                    </p>
+                    <p className="suggested-level">Suggested: {levels[recommendation.level].name} · ~{levels[recommendation.level].elo} Elo</p>
                     <div className="adaptive-settings">
                       <label><input type="checkbox" checked={difficulty.adaptive} onChange={(e) => setDifficulty({...difficulty, adaptive:e.target.checked, manualLevel:effectiveLevel})} />Adjust difficulty with my progress</label>
-                      <p><strong>Suggested: {levels[recommendation.level].name} · ~{levels[recommendation.level].elo} Elo</strong></p>
-                      <p>{recommendation.reason}</p>
-                      <small>{recommendation.qualifyingGames} of 3 qualifying games in this round. Each needs at least eight analyzed player moves. Manual games do not change the recommendation.</small>
                       <button className="text-link" onClick={() => setPlacementOpen(true)}>{difficulty.placement ? "Retake placement check" : "Find my starting level"}</button>
                       {difficultyError && <p role="alert">{difficultyError}</p>}
                     </div>
@@ -136,13 +125,6 @@ export default function App() {
                       <small className="rating-note">
                         Approximate Elo · training levels, not rated games
                       </small>
-                    </fieldset>
-                    <fieldset className="focus-choice">
-                      <legend>One focus for this game</legend>
-                      <select aria-label="Game focus" value={chosenFocus} onChange={(e) => setChosenFocus(e.target.value as FocusId)}>
-                        {focuses.map((focus) => <option key={focus.id} value={focus.id}>{focus.name}</option>)}
-                      </select>
-                      <p>{focuses.find((focus) => focus.id === chosenFocus)!.prompt}</p>
                     </fieldset>
                     <fieldset className="side-field">
                       <legend>Play as</legend>
@@ -175,6 +157,13 @@ export default function App() {
                       Start game
                       <ArrowRight size={19} />
                     </button>
+                    <fieldset className="focus-choice">
+                      <legend>One focus for this game</legend>
+                      <select aria-label="Game focus" value={chosenFocus} onChange={(e) => setChosenFocus(e.target.value as FocusId)}>
+                        {focuses.map((focus) => <option key={focus.id} value={focus.id}>{focus.name}</option>)}
+                      </select>
+                      <p>{focuses.find((focus) => focus.id === chosenFocus)!.prompt}</p>
+                    </fieldset>
                   </div>
                 ) : (
                   <CoachPanel
@@ -209,10 +198,7 @@ export default function App() {
                 <ArrowRight size={19} />
               </span>
             </button>
-            <footer className="page-footer">
-              <ShieldCheck size={13} />A space to practice, not to prove
-              yourself.<span>Made for your next move.</span>
-            </footer>
+
           </>
         ) : page === "Practice" ? (
           <Practice records={state.records} onPlay={() => setPage("Play")} />
