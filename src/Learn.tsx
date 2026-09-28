@@ -29,9 +29,6 @@ export default function Learn() {
           <ArrowLeft size={17} />
           All lessons
         </button>
-        <div className="lesson-meta">
-          {lesson.category} · {lesson.minutes} min read
-        </div>
         <h1>{lesson.title}</h1>
         <p className="intro">{lesson.description}</p>
         <article>
