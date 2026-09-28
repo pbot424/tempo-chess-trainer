@@ -1,7 +1,7 @@
 import { assetUrl } from "./site";
 import { useState } from "react";
 import type { Square, PieceSymbol } from "chess.js";
-import { Lightbulb, Undo2, RefreshCw, Flag, UserRound } from "lucide-react";
+import { Undo2, RefreshCw, Flag, UserRound } from "lucide-react";
 import { type GameState, levels } from "./useGame";
 const names: Record<string, string> = {
   p: "pawn",
@@ -127,13 +127,6 @@ export default function Board({
       <div className="player bottom">
         {playerAtBottom ? playerIdentity : opponentIdentity}
         <div className="board-tools">
-          <button
-            aria-label="Hint"
-            disabled={!state.active || state.busy || g.turn() !== state.color}
-            onClick={() => void state.getHint()}
-          >
-            <Lightbulb /> <span>Hint</span>
-          </button>
           <button
             aria-label="Undo"
             disabled={!state.active || state.busy || !history.length}
