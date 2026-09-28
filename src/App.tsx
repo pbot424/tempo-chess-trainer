@@ -122,9 +122,6 @@ export default function App() {
                           </button>
                         ))}
                       </div>
-                      <small className="rating-note">
-                        Approximate Elo · training levels, not rated games
-                      </small>
                     </fieldset>
                     <fieldset className="side-field">
                       <legend>Play as</legend>
