@@ -23,3 +23,6 @@ coverage/
 # Historical working notes are kept locally, not published.
 IMPLEMENTATION.md
 design/verification.md
+
+# Local design reference screenshots
+design/*.png

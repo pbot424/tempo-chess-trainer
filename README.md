@@ -51,7 +51,7 @@ Elo numbers are training targets, not calibrated ratings. Presets combine Stockf
 
 The local edition defaults to **Ollama with Qwen3.5 9B**, running on your computer. No API key, ChatGPT allowance or Codex allowance is used. Install Ollama and download the model before using free-text chat; no automatic cloud fallback is configured.
 
-See [Local AI setup and use](docs/LOCAL_AI.md) for CLI commands, future-project examples, memory guidance, and service controls. The shared endpoint is `http://127.0.0.1:11434` and the model is `qwen3.5:9b`. Optional settings in `.env.local`: `COACH_PROVIDER=ollama`, `OLLAMA_MODEL=qwen3.5:9b`. Restart the app server after changing configuration.
+See [Local AI setup and use](docs/LOCAL_AI.md) for installation, commands, troubleshooting, and privacy details. The shared endpoint is `http://127.0.0.1:11434` and the model is `qwen3.5:9b`. Optional settings in `.env.local`: `COACH_PROVIDER=ollama`, `OLLAMA_MODEL=qwen3.5:9b`. Restart the app server after changing configuration.
 
 Stockfish remains responsible for chess calculations. The local explanation model receives verified attacked/defended facts, broad piece locations, recent evaluation losses, the player's question and bounded conversation. It is not asked to calculate tactics from FEN. The local request uses an 8K context and non-thinking mode for latency, with up to six recent messages and three evaluated moves. Model memory use and response time depend on your hardware.
 

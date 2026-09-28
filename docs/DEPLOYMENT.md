@@ -47,8 +47,14 @@ Cloudflare Pages serves matching directory index files. If the portfolio uses a 
 
 The lite single-threaded Stockfish build does not require SharedArrayBuffer isolation headers. If your portfolio has a Content Security Policy, allow its same-origin Worker/WASM execution and its Google Fonts styles/fonts; test the actual policy on the deployed site.
 
-## Remaining deployment inputs
+## presbot.dev integration
 
-The portfolio domain, repository, build output directory, and Cloudflare Pages/Workers routing determine the final integration. This repository alone does not change the existing portfolio or publish a Cloudflare deployment. Social sharing images and cross-browser/accessibility audits are optional follow-ups; no accounts, analytics, or cloud sync are included.
+The target is `https://presbot.dev/chess/`. The portfolio uses a Cloudflare Worker with the `SITE_ASSETS` binding and a `dist/` output directory. Its `scripts/public-site.js` allowlist must include Tempo's entry, notices, image, and assets/engine/pieces directories. Its preview server also needs the WASM MIME type and the same scoped CSP used in `_headers`.
+
+Keep the source revision in the portfolio's `chess/README.md`, outside the public file allowlist. The root portfolio build copies the approved static snapshot into `dist/chess/`; it does not build the local AI server.
+
+The portfolio's project-card rules require a genuine walkthrough in WebM and MP4 plus a poster before the active card is released. The local recorder has a `tempo` walkthrough. Verify both card and expanded-dialog playback, offscreen pause, and reduced-motion fallback. Run the portfolio's tests/build and review any unrelated pending changes before deploying its Worker.
+
+After release, verify the live URL under Cloudflare's actual routing and headers. Safari/Firefox and accessibility checks remain part of release QA. A social sharing image is optional polish; no accounts, analytics, or cloud sync are included.
 
 References: [Cloudflare Pages routing](https://developers.cloudflare.com/pages/configuration/serving-pages/), [Workers HTML handling](https://developers.cloudflare.com/workers/static-assets/routing/advanced/html-handling/), [Vite base paths](https://vite.dev/guide/build.html#public-base-path).
