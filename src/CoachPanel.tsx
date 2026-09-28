@@ -117,7 +117,6 @@ export default function CoachPanel({
       </div>
       {__LOCAL_COACH__ ? <CoachComposer state={state} /> : <div className="local-coach-note">
         <strong>Want to talk through your thinking?</strong>
-        <p>Play and move feedback run in your browser. For open-ended AI conversations, run Tempo locally with Ollama.</p>
         <a href={localCoachGuideUrl} target="_blank" rel="noreferrer">Set up your local AI coach ↗</a>
       </div>}
       {state.result && (
