@@ -2054,3 +2054,23 @@ legend {
 .game-history .coach-moves { border-top: 0; }
 .coach-followups button { justify-content: center; min-width: 0; line-height: 1.4; }
 .coach-followups button svg { flex-shrink: 0; }
+
+/* The board and history set the desktop rail height; extra room goes to chat. */
+@media (min-width: 721px) {
+  .play-page .setup-panel.coaching {
+    align-self: stretch;
+    contain: size;
+    display: flex;
+    flex-direction: column;
+  }
+  .setup-panel.coaching .live-coach { flex: 1; min-height: 0; }
+  .setup-panel.coaching .live-coach > * { flex-shrink: 0; }
+  .setup-panel.coaching .coach-conversation {
+    flex: 1 1 0;
+    height: auto;
+    min-height: 0;
+  }
+}
+@media (max-width: 720px) {
+  .coach-conversation { height: 440px; }
+}
