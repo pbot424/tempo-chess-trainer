@@ -1,0 +1,25 @@
+node_modules/
+dist/
+.DS_Store
+.test-artifacts/
+
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+
+# Local credentials, logs, and browser test output
+*.pem
+*.key
+*.p12
+*.pfx
+.npmrc
+*.log
+playwright-report/
+test-results/
+coverage/
+.vercel/
+.wrangler/
+# Historical working notes are kept locally, not published.
+IMPLEMENTATION.md
+design/verification.md

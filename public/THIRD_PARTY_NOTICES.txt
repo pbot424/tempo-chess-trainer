@@ -1,0 +1,37 @@
+Tempo — third-party software and assets
+
+Project source and local AI instructions:
+https://github.com/pbot424/tempo-chess-trainer
+https://github.com/pbot424/tempo-chess-trainer/blob/main/docs/LOCAL_AI.md
+
+Stockfish.js 19.0.0 lite single-threaded engine
+Copyright 2026 Chess.com, LLC and the Stockfish contributors. GPL-3.0.
+The distributed JavaScript and WASM are unmodified stockfish npm 19.0.0 artifacts.
+License: engine/COPYING.txt (relative to this file).
+Corresponding versioned source and build instructions:
+https://github.com/nmrugg/stockfish.js/tree/v19.0.0
+Source archive:
+https://github.com/nmrugg/stockfish.js/archive/refs/tags/v19.0.0.tar.gz
+Upstream explains the Emscripten toolchain and ./build.js --all build command.
+Preserve access to the corresponding source and license when redistributing.
+
+Chess piece SVGs
+Colin M. L. Burnett, GPL-2.0-or-later.
+Source SVGs are included in pieces/; upstream attribution: pieces/LICENSE.md.
+https://github.com/lichess-org/lila/tree/master/public/piece/cburnett
+License: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+
+chess.js — BSD-2-Clause
+https://github.com/jhlywa/chess.js
+React and React DOM — MIT
+https://github.com/facebook/react
+Lucide — ISC
+https://github.com/lucide-icons/lucide
+Full bundled dependency license texts: DEPENDENCY_LICENSES.txt.
+
+DM Sans and Libre Caslon Display — SIL Open Font License 1.1
+Loaded from Google Fonts; the user's browser contacts Google's font servers.
+https://github.com/google/fonts/tree/main/ofl/dmsans
+https://github.com/google/fonts/tree/main/ofl/librecaslondisplay
+
+Landscape illustration generated for Tempo using Image Gen.
