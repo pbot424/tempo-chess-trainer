@@ -1,5 +1,7 @@
 # Product copy
 
+Do not add eyebrow/kicker labels: small uppercase captions above headings (for example, “PROGRESS WITH EVIDENCE” or “YOUR COACH”). Use the heading alone.
+
 Default to no subtext. Do not automatically add descriptions below titles, cards, controls, buttons, or empty states.
 
 Add supporting text only when it is necessary to complete an action, recover from an error, understand a material limitation, or understand data/privacy consequences. Prefer a clear label or one concise sentence. Put optional explanations behind an explicit help or details control.

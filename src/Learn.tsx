@@ -37,7 +37,7 @@ export default function Learn() {
           ))}
         </article>
         <section className="quiz panel">
-          <span className="section-label">PUT IT INTO PRACTICE</span>
+          
           <h2>{lesson.question}</h2>
           {lesson.answers.map((a, i) => (
             <button

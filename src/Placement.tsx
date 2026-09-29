@@ -29,7 +29,7 @@ export default function Placement({ onClose, onComplete }: { onClose: () => void
   }
   function next(loss: number | null) { setLosses((values) => [...values,loss]); setFeedback(null); setError(""); }
   return <dialog ref={dialog} className="move-review-dialog placement-dialog" aria-labelledby="placement-title" onCancel={(e)=>{e.preventDefault();onClose();}}>
-    <header className="move-review-header"><div><span className="section-label">FIND YOUR STARTING CHALLENGE</span><h2 id="placement-title">A short placement check</h2></div><button autoFocus className="review-close" aria-label="Close placement" onClick={onClose}><X size={20}/></button></header>
+    <header className="move-review-header"><div><h2 id="placement-title">A short placement check</h2></div><button autoFocus className="review-close" aria-label="Close placement" onClick={onClose}><X size={20}/></button></header>
     {complete ? <section className="placement-result"><h3>Start with {levels[placementLevel(losses)].name}</h3>
       <p>That is roughly our {levels[placementLevel(losses)].elo} Elo training setting. Three positions give a starting suggestion, not a chess rating. Adaptive play will refine it using your games.</p>
       <button className="primary" onClick={()=>onComplete({level:placementLevel(losses),losses,completedAt:new Date().toISOString()})}>Use this starting level</button>

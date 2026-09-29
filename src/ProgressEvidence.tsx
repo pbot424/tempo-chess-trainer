@@ -13,7 +13,7 @@ export default function ProgressEvidence({ records, onExplore }: { records: Game
       <span>Explore this position →</span></button>;
   }
   return <section className="panel evidence-panel" aria-label="Progress evidence">
-    <span className="section-label">PROGRESS WITH EVIDENCE</span>
+    
     <h2>{evidence.headline}</h2>
     <p>{evidence.ready
       ? `Your rate changed by ${Math.abs(evidence.difference!).toFixed(1)} percentage points ${evidence.difference! < 0 ? "down" : "up"}, comparing your latest five analyzed games with the five before them.`
