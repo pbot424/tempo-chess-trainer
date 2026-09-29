@@ -1,3 +1,4 @@
+import { hintOnlyEntry } from "./liveCoach";
 import { localCoachGuideUrl } from "./site";
 import { useCallback, useEffect, useRef } from "react";
 import {
@@ -47,7 +48,7 @@ export default function CoachPanel({
         aria-live="polite"
         aria-relevant="additions text"
       >
-        {state.conversation.map((entry) => (
+        {state.conversation.map(hintOnlyEntry).map((entry) => (
           <div
             className={`conversation-entry ${entry.role} ${entry.kind}`}
             key={entry.id}
@@ -94,9 +95,7 @@ export default function CoachPanel({
               <strong>Your focus, in review</strong>
               <p>{state.focusSummary.summary}</p><p>{state.focusSummary.next}</p>
             </div>}
-            <span>
-              Review your game to find an idea to take into the next one.
-            </span>
+
           </div>
         )}
       </div>

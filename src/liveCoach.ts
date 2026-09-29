@@ -74,6 +74,26 @@ function threatHint(response: Move | null): string {
   return "Check your opponent’s forcing moves: checks, captures, and threats.";
 }
 
+// Trim routine reminders from both new feedback and saved conversations.
+function conciseCoachText(text: string): string {
+  const reminders = [
+    "Keep looking for chances to escort a passed pawn to promotion.",
+    "Keep considering castling as part of your development.",
+    "Keep getting your pieces involved like this.",
+    "Keep building around it by bringing your knights and bishops into play.",
+    "Keep looking for useful forcing moves, then calculate how their king can respond.",
+    "Keep taking that moment to check your opponent’s reply.",
+    "Keep weighing your candidate moves before committing.",
+    "Only legal escapes will be available on the board.",
+    "Don’t feel you have to take back automatically.",
+    "Keep making that safety scan.",
+    "Keep pairing that idea with a check of your opponent’s threats.",
+    "I will point out relevant moments as we play.",
+  ];
+  for (const reminder of reminders) text = text.replaceAll(reminder, "");
+  return text.replace(/ {2,}/g, " ").trim();
+}
+
 /** Remove move-revealing advice saved by earlier versions, retaining played-move history. */
 export function hintOnlyEntry(entry: CoachEntry): CoachEntry {
   if (entry.role !== "coach") return entry;
@@ -100,8 +120,8 @@ export function hintOnlyEntry(entry: CoachEntry): CoachEntry {
     ...entry,
     text: entry.kind === "hint" && entry.text.includes("I’ve marked")
       ? "Compare two candidate moves. For each, look for your opponent’s strongest check, capture, or threat before choosing."
-      : clean(entry.text),
-    detail: entry.detail ? clean(entry.detail) : undefined,
+      : conciseCoachText(clean(entry.text)),
+    detail: entry.detail ? conciseCoachText(clean(entry.detail)) : undefined,
   };
 }
 export function moveFeedback({
@@ -194,7 +214,7 @@ export function moveFeedback({
     ply,
     role: "coach",
     kind,
-    text,
+    text: conciseCoachText(text),
     detail,
     move: `${Math.ceil(ply / 2)}${m.color === "w" ? "." : "…"} ${san}`,
   };

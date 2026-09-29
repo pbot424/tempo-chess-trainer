@@ -67,7 +67,6 @@ export default function Learn() {
       <header className="page-header">
         <div>
           <h1>Small lessons. Stronger moves.</h1>
-          <p>Build your understanding, one good idea at a time.</p>
         </div>
         <span className="completion">
           <BookOpen size={18} />

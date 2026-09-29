@@ -17,8 +17,7 @@ export default function Practice({ records, onPlay }: { records: GameRecord[]; o
   return <div className="practice-page">
     {!library.exercises.length ? <section className="panel practice-empty">
       <h2>{library.candidateCount ? "A pattern needs another example." : "Your games become your practice."}</h2>
-      <p>Once a theme appears in at least two analyzed learning moments, its positions will appear here. Play and save a game to build your personal practice set.</p>
-      <p>Only your recorded positions are used. No mistakes are invented to fill this page.</p>
+      <p>Play and save games to build your practice set.</p>
       <button className="primary" onClick={onPlay}>Play a game <ArrowRight size={16} /></button>
     </section> : <>
       <div className="practice-overview panel">

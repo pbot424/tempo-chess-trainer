@@ -168,7 +168,6 @@ export default function App() {
                       <select aria-label="Game focus" value={chosenFocus} onChange={(e) => setChosenFocus(e.target.value as FocusId)}>
                         {focuses.map((focus) => <option key={focus.id} value={focus.id}>{focus.name}</option>)}
                       </select>
-                      <p>{focuses.find((focus) => focus.id === chosenFocus)!.prompt}</p>
                     </fieldset>
                   </div>
                 ) : (
@@ -196,7 +195,6 @@ export default function App() {
               </span>
               <span className="banner-copy">
                 <strong>Small lessons. Stronger moves.</strong>
-                <span>Explore the essentials, one concept at a time.</span>
               </span>
               <img className="landscape" src={assetUrl("landscape.png")} alt="" />
               <span className="text-link">
