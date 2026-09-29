@@ -5,7 +5,6 @@ import { useState } from "react";
 import {
   ArrowRight,
   TrendingUp,
-  Sprout,
   Target,
   Download,
   X,
@@ -40,9 +39,6 @@ export default function Progress({
     <>
       {!records.length ? (
         <div className="empty-profile panel">
-          <div className="empty-icon">
-            <Sprout size={36} />
-          </div>
           <h2>Every game tells a story.</h2>
           <p>
             Play your first game to start discovering your style. Your coach
