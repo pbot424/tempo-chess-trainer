@@ -6,6 +6,7 @@ import {
   Target,
   ChartNoAxesColumnIncreasing,
   ArrowRight,
+  ArrowLeft,
   ChevronRight,
 } from "lucide-react";
 import Placement from "./Placement";
@@ -89,6 +90,10 @@ export default function App() {
             </button>
           ))}
         </nav>
+        <a className="portfolio-return" href="https://presbot.dev/" aria-label="Back to portfolio">
+          <ArrowLeft size={18} aria-hidden="true" />
+          <span>Back to portfolio</span>
+        </a>
       </aside>
       <main className={page === "Play" ? "play-page" : undefined}>
         {page === "Play" ? (

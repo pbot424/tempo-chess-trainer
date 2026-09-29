@@ -2093,3 +2093,26 @@ legend {
 @media (min-width: 1500px) {
   .play-page .play-layout { --coach-width: 380px; }
 }
+
+
+.portfolio-return {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding: 12px 8px;
+  color: var(--pine);
+  font-size: 12px;
+  text-decoration: none;
+  border-radius: 7px;
+}
+.portfolio-return svg { flex-shrink: 0; }
+.portfolio-return:hover { background: #dfe6d7; }
+.portfolio-return:focus-visible { outline: 2px solid var(--pine); outline-offset: 2px; }
+@media (min-width: 721px) and (max-width: 900px) {
+  .portfolio-return { flex-direction: column; padding-inline: 0; gap: 5px; font-size: 10px; text-align: center; }
+}
+@media (max-width: 720px) {
+  .sidebar { flex-wrap: wrap; }
+  .portfolio-return { order: -1; width: 100%; margin: 0 0 6px; padding: 4px 0; }
+}
