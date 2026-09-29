@@ -2079,6 +2079,7 @@ legend {
 @media (min-width: 721px) {
   .play-page .play-layout {
     --coach-width: 320px;
+    max-width: calc(100dvh - 240px + 440px + var(--play-gap, 20px));
     grid-template-columns: minmax(0, calc(100dvh - 240px)) minmax(var(--coach-width), 1fr);
   }
   .play-page .board-wrap {
@@ -2087,7 +2088,7 @@ legend {
   }
 }
 @media (min-width: 721px) and (max-width: 1100px) {
-  .play-page .play-layout { --coach-width: 260px; }
+  .play-page .play-layout { --coach-width: 260px; --play-gap: 12px; }
 }
 @media (min-width: 1500px) {
   .play-page .play-layout { --coach-width: 380px; }
