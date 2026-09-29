@@ -2079,8 +2079,7 @@ legend {
 @media (min-width: 721px) {
   .play-page .play-layout {
     --coach-width: 320px;
-    max-width: calc(100dvh - 240px + var(--coach-width) + 20px);
-    margin-inline: auto;
+    grid-template-columns: minmax(0, calc(100dvh - 240px)) minmax(var(--coach-width), 1fr);
   }
   .play-page .board-wrap {
     max-width: max(160px, calc(100dvh - 280px));
