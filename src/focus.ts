@@ -35,9 +35,9 @@ export function observeFocus(focus: FocusId, beforeFen: string, afterFen: string
     const newlyExposed = current.filter((square) => !previous.includes(square === move.to ? move.from : square));
     if (!previous.length && !newlyExposed.length) return undefined;
     if (previous.length && !stillExposed.length && !newlyExposed.length && loss < 50)
-      return { focus, outcome: "reinforced", observation: "Your focus: the attacked, undefended pieces from before your move are no longer exposed that way, and the move holds up in this search. Keep making that safety scan." };
+      return { focus, outcome: "reinforced", observation: "Your focus: the attacked, undefended pieces from before your move are no longer exposed that way, and the move looks sound. Keep making that safety scan." };
     if (loss >= 150 && (stillExposed.length || newlyExposed.length))
-      return { focus, outcome: "revisit", observation: "Your focus: after this move, a piece is attacked with no direct defender, and the engine finds a significant drawback. What changed in its protection?" };
+      return { focus, outcome: "revisit", observation: "Your focus: after this move, a piece is attacked with no direct defender, and your position may be harder to defend. What changed in its protection?" };
     return { focus, outcome: "unclear", observation: "Your focus: there is an attacked piece without a direct defender. That alone doesn’t prove a mistake—consider forcing moves and compensation before deciding." };
   }
   const developing = ["n", "b"].includes(move.piece) && move.from[1] === (move.color === "w" ? "1" : "8");
@@ -50,7 +50,7 @@ export function observeFocus(focus: FocusId, beforeFen: string, afterFen: string
     focus,
     outcome: loss < 50 ? "reinforced" : loss >= 150 ? "revisit" : "unclear",
     observation: loss < 50
-      ? `Your focus: ${subject} worked without a significant drawback in this search. Keep pairing that idea with a check of your opponent’s threats.`
+      ? `Your focus: ${subject} looks sound here. Keep pairing that idea with a check of your opponent’s threats.`
       : `Your focus: ${subject} fits your plan, but the move also gave your opponent an opportunity. What did that move leave behind?`,
   };
 }

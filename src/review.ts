@@ -48,8 +48,8 @@ export async function analyzeAttempt(
   return {
     san: played.san, fen: after, loss,
     verdict: same ? "You revisited your original move."
-      : loss < 50 ? "This idea holds up in the engine’s short search."
-      : loss + 50 < target.originalLoss ? "This idea gives up less than your original move in this search."
+      : loss < 50 ? "This looks like a sound idea."
+      : loss + 50 < target.originalLoss ? "This looks more promising than your original move."
       : "There’s still something to investigate.",
     question: game.isGameOver() ? feedback.text
       : loss >= 50 ? `${feedback.text} What would you check differently before trying again?`

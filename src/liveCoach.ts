@@ -83,7 +83,19 @@ export function hintOnlyEntry(entry: CoachEntry): CoachEntry {
     .replace(/After your move, one engine reply is [^.]+\. /g, "Check your opponent’s forcing moves: checks, captures, and threats. ")
     .replace(/They can play [^.]+\. /g, "A piece may be vulnerable. Check your attacked pieces and their defenders. ")
     .replace(/They have checkmate with [^.]+\. /g, "There is an immediate mating threat. Check the lines toward your king. ")
-    .replace(/Watch the check [^.]+\. /g, "Look for forcing checks against your king. ");
+    .replace(/Watch the check [^.]+\. /g, "Look for forcing checks against your king. ")
+    .replaceAll('The position gives your opponent more opportunity than the engine’s preferred move. ', 'This move may give your opponent an opening. ')
+    .replaceAll('and the engine finds no significant drawback', 'and this looks like a sound choice')
+    .replaceAll('and the engine is happy with the choice', 'and the capture looks sound')
+    .replaceAll('it gives check without a significant evaluation drop in this search', 'it gives check while keeping your position on track')
+    .replaceAll('It holds up well against the engine’s alternatives.', 'It looks like a sound way forward.')
+    .replaceAll('No significant opportunity was lost in the engine’s short search.', 'You seem to be keeping your options open.')
+    .replaceAll('That matches the engine’s preferred move in this search. ', 'That looks like a strong choice here. ')
+    .replace(/The estimated difference is [\d.]+ pawns\. This is a short search, so treat it as a starting point for analysis\./g, "What could your opponent do next, and how would you respond?")
+    .replaceAll("and the engine finds a significant drawback", "and your position may be harder to defend")
+    .replaceAll("the move holds up in this search", "the move looks sound")
+    .replaceAll("worked without a significant drawback in this search", "looks sound here")
+    .replaceAll(" Keep checking the reply after a capture, just as carefully as the capture itself.", "");
   return {
     ...entry,
     text: entry.kind === "hint" && entry.text.includes("I’ve marked")
@@ -143,7 +155,7 @@ export function moveFeedback({
       text += `Your pawn now occupies ${m.to}, a natural developing square for your knight. `;
     else
       text +=
-        "The position gives your opponent more opportunity than the engine’s preferred move. ";
+        "This move may give your opponent an opening. ";
     if (alternative && alternative.san !== san)
       text += discoveryHint(alternative, new Chess(before));
     else
@@ -151,7 +163,7 @@ export function moveFeedback({
   } else if (m.isPromotion())
     text = `Nice work getting that pawn through. ${san} turns it into a ${names[m.promotion!]}. Keep looking for chances to escort a passed pawn to promotion.`;
   else if (m.isKingsideCastle() || m.isQueensideCastle())
-    text = `I like ${san} here. You’ve brought your king and rook into new positions, and the engine finds no significant drawback. Keep considering castling as part of your development.`;
+    text = `I like ${san} here. You’ve brought your king and rook into new positions, and this looks like a sound choice. Keep considering castling as part of your development.`;
   else if (
     ply <= 20 &&
     ["n", "b"].includes(m.piece) &&
@@ -161,23 +173,23 @@ export function moveFeedback({
   else if (m.piece === "p" && ["d4", "e4", "d5", "e5"].includes(m.to))
     text = `I like the central space you’ve claimed with ${san}. That pawn gives you a foothold in the middle. Keep building around it by bringing your knights and bishops into play.`;
   else if (m.captured)
-    text = `Good, ${san} picks up their ${names[m.captured]} on ${m.to}, and the engine is happy with the choice. Keep checking the reply after a capture, just as carefully as the capture itself.`;
+    text = `Good, ${san} picks up their ${names[m.captured]} on ${m.to}, and the capture looks sound.`;
   else if (m.san.includes("+"))
-    text = `I like ${san}: it gives check without a significant evaluation drop in this search. Keep looking for useful forcing moves, then calculate how their king can respond.`;
+    text = `I like ${san}: it gives check while keeping your position on track. Keep looking for useful forcing moves, then calculate how their king can respond.`;
   else
     text = [
-      `I like your choice of ${san}. It holds up well against the engine’s alternatives. Keep taking that moment to check your opponent’s reply.`,
-      `${san} looks sound in this position. No significant opportunity was lost in the engine’s short search. Keep weighing your candidate moves before committing.`,
+      `I like your choice of ${san}. It looks like a sound way forward. Keep taking that moment to check your opponent’s reply.`,
+      `${san} looks sound in this position. You seem to be keeping your options open. Keep weighing your candidate moves before committing.`,
     ][Math.ceil(ply / 2) % 2];
   let detail = `With ${san}, you ${idea(m, new Chess(before))}. `;
   if (alternative)
     detail +=
       alternative.san === san
-        ? "That matches the engine’s preferred move in this search. "
+        ? "That looks like a strong choice here. "
         : discoveryHint(alternative, new Chess(before)) + " ";
   if (response) detail += threatHint(response) + " ";
   if (!finish.isGameOver())
-    detail += `The estimated difference is ${(loss / 100).toFixed(1)} pawns. This is a short search, so treat it as a starting point for analysis.`;
+    detail += "What could your opponent do next, and how would you respond?";
   return {
     ply,
     role: "coach",

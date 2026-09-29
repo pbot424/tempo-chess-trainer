@@ -37,7 +37,7 @@ test("an engine-matching alternative is accepted, and illegal attempts never rea
   const t = target(["a3"], 1);
   const result = await analyzeAttempt(t, { from: "e2", to: "e4" }, async () => ({ move: "e2e4", score: 30 }));
   assert.equal(result.loss, 0);
-  assert.match(result.verdict, /holds up/);
+  assert.match(result.verdict, /sound idea/);
   await assert.rejects(analyzeAttempt(t, { from: "a1", to: "a8" }, async () => { throw new Error("should not be called"); }), /Invalid move/);
 });
 test("promotion choices and terminal outcomes are evaluated without requesting an illegal reply", async () => {
