@@ -68,7 +68,6 @@ export default function Progress({
           </div>
           <ProgressEvidence records={records} onExplore={onExplore} />
           <section className="profile-summary panel">
-            
             <h2>{stats.style}</h2>
             <p>
               {stats.moves < 100 || records.length < 5

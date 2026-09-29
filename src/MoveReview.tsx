@@ -59,7 +59,6 @@ export default function MoveReview({ target, onClose, practice, onAttempt }: {
         </div>
       </section>
       <section className="review-guidance" aria-live="polite">
-        
         <h3>{busy ? "Thinking through your idea…" : showOriginal ? "What changed?" : attempt ? attempt.verdict : "Take a fresh look."}</h3>
         <p>{showOriginal ? "Compare the position before and after your move. Which attacks, defenders, or lines changed? Go back and test another idea on the board." : attempt ? attempt.question : practice?.prompt ?? reviewQuestion(target)}</p>
         {!attempt && !showOriginal && <p className="muted">Choose a piece and try a legal move. I’ll help you examine it without giving you the answer.</p>}

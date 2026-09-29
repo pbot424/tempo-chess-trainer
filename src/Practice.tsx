@@ -35,7 +35,6 @@ export default function Practice({ records, onPlay }: { records: GameRecord[]; o
         const record = progress[item.key];
         const ready = practiceDue(record, Date.now());
         return <article className="panel practice-card" key={item.key}>
-          
           <h3>{practiceThemes[item.theme].title}</h3>
           <p>{practiceThemes[item.theme].prompt}</p>
           <small>{new Date(item.date).toLocaleDateString(undefined, {month:"short",day:"numeric"})} · Move {Math.ceil(item.ply/2)} · {item.ply % 2 ? "White" : "Black"}{item.occurrences > 1 ? ` · This position appeared ${item.occurrences} times` : ""}</small>
