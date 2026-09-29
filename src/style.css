@@ -2116,3 +2116,20 @@ legend {
   .sidebar { flex-wrap: wrap; }
   .portfolio-return { order: -1; width: 100%; margin: 0 0 6px; padding: 4px 0; }
 }
+
+.accuracy-review { margin: 18px 0; padding: 16px; border: 1px solid var(--border); border-radius: 10px; }
+.accuracy-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.accuracy-heading h3 { margin: 0 0 4px; font-size: 16px; }
+.accuracy-heading small { font-size: 11px; color: #65726b; }
+.accuracy-heading > strong { font-size: 34px; white-space: nowrap; }
+.accuracy-heading > strong small { margin-left: 4px; }
+.accuracy-counts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 16px; }
+.accuracy-counts div { display: flex; flex-direction: column; gap: 4px; }
+.accuracy-counts strong { font-size: 19px; }
+.accuracy-counts span { font-size: 10px; }
+.accuracy-moments { margin-top: 18px; }
+.accuracy-moments h4 { margin-bottom: 8px; font-size: 12px; }
+.accuracy-moments button { display: flex; justify-content: space-between; width: 100%; gap: 10px; padding: 9px 0; text-align: left; font-size: 11px; }
+.accuracy-method { margin-top: 14px; font-size: 11px; color: #65726b; }
+.accuracy-method summary { cursor: pointer; }
+.accuracy-method p { margin-top: 8px; font-size: 11px; }

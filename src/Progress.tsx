@@ -1,3 +1,5 @@
+import GameAccuracy from "./GameReviewSummary";
+import { gameAccuracy, moveRating } from "./gameAccuracy";
 import ProgressEvidence from "./ProgressEvidence";
 import { useState } from "react";
 import {
@@ -121,7 +123,7 @@ export default function Progress({
                   </small>
                 </span>
                 <span>
-                  {g.moves.length} analyzed moves <ArrowRight size={17} />
+                  {gameAccuracy(g.moves).score === null ? "Unscored" : `${gameAccuracy(g.moves).score}/100`} <ArrowRight size={17} />
                 </span>
               </button>
             ))}
@@ -145,8 +147,9 @@ export default function Progress({
             </button>
             <h2>{review.result}</h2>
             <p>
-              {review.level} opponent · {review.moves.length} analyzed moves
+              {review.level} opponent · {review.moves.length} analyzed {review.moves.length === 1 ? "move" : "moves"}
             </p>
+            <GameAccuracy moves={review.moves} pgn={review.pgn} onExplore={(target) => { setReview(null); onExplore(target); }} />
             {review.focus && <section className="saved-focus-summary">
               <h3>{focusInfo(review.focus).name}</h3>
               <p>{summarizeFocus(review.focus, review.moves).summary}</p>
@@ -157,18 +160,11 @@ export default function Progress({
                 review.moves.map((m) => (
                   <div key={m.ply}>
                     <strong>
-                      {Math.ceil(m.ply / 2)}. {m.san}
+                      {Math.ceil(m.ply / 2)}{m.ply % 2 ? "." : "…"} {m.san}
                     </strong>
                     <span>
-                      {m.loss < 50
-                        ? "Sound move"
-                        : m.loss < 150
-                          ? "Room to improve"
-                          : "Review this move"}
+                      {moveRating(m.loss)}
                     </span>
-                    <small>
-                      {(m.loss / 100).toFixed(1)} pawn evaluation loss
-                    </small>
                     {m.focusEvent && <p className="saved-focus-observation">{m.focusEvent.observation}</p>}
                     <button className="text-link" onClick={() => {
                       onExplore({ pgn: review.pgn, ply: m.ply, originalSan: m.san, originalLoss: m.loss });

@@ -1,3 +1,4 @@
+import GameAccuracy from "./GameReviewSummary";
 import { hintOnlyEntry } from "./liveCoach";
 import { localCoachGuideUrl } from "./site";
 import { useCallback, useEffect, useRef } from "react";
@@ -91,6 +92,7 @@ export default function CoachPanel({
           <div className="conversation-entry result">
             <div className="conversation-meta">Game complete</div>
             <p>{state.result}</p>
+            <GameAccuracy moves={state.evidence} pgn={state.game.pgn()} onExplore={onExplore} />
             {state.focusSummary && <div className="focus-summary">
               <strong>Your focus, in review</strong>
               <p>{state.focusSummary.summary}</p><p>{state.focusSummary.next}</p>
