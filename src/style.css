@@ -2074,3 +2074,22 @@ legend {
 @media (max-width: 720px) {
   .coach-conversation { height: 440px; }
 }
+
+/* Reserve vertical room for player rows, controls, and collapsed move history. */
+@media (min-width: 721px) {
+  .play-page .play-layout {
+    --coach-width: 320px;
+    max-width: calc(100dvh - 240px + var(--coach-width) + 20px);
+    margin-inline: auto;
+  }
+  .play-page .board-wrap {
+    max-width: max(160px, calc(100dvh - 280px));
+    margin-inline: auto;
+  }
+}
+@media (min-width: 721px) and (max-width: 1100px) {
+  .play-page .play-layout { --coach-width: 260px; }
+}
+@media (min-width: 1500px) {
+  .play-page .play-layout { --coach-width: 380px; }
+}
